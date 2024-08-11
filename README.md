@@ -93,7 +93,7 @@ In this task, we need to recognise activity performed in a video via a Decision 
 ### Dataset
 
 Use atleast three classes from the [UCF9 Dataset](https://iitgnacin-my.sharepoint.com/:f:/g/personal/22210006_iitgn_ac_in/EmgKF7jE-2xEnO5zYb3GvJ8BN4RncsgXYJphZ4ys2BCYUg?e=rN9s03) which
-contains 9 cleasses from [UCF101 Dataset](https://www.crcv.ucf.edu/data/UCF101.php). Feel free to choose any other classes from the
+contains 9 classes from [UCF101 Dataset](https://www.crcv.ucf.edu/data/UCF101.php). Feel free to choose any other classes from the
 [UCF101 Dataset](https://www.crcv.ucf.edu/data/UCF101.php). Split each classes into train and validation split containing 80 and 20
 samples per class respectively. Use the rest for testing purpose. You
 can use [OpenCV](https://opencv.org/get-started/) to load videos.
