@@ -86,15 +86,114 @@ It is advised to either write a markdown file or use a Python notebook to demons
 2. ***DO NOT share your API key with anyone or make it public or upload it to any public repository such as for this assignment. If the key is found in the code, you will be penalized with a <u>0.5 marks deduction</u>.***
 
 
-## Task2 : Vision based Human Activity Recognition
+## Task 2: Vision based Human Activity Recognition
 
-### Some Background :
+In this task, we need to recognise activity performed in a video via a Decision Tree Classifier
 
-### Task Description :
+### Dataset
 
-### Questions
+Use atleast three classes from the [UCF9 Dataset](https://iitgnacin-my.sharepoint.com/:f:/g/personal/22210006_iitgn_ac_in/EmgKF7jE-2xEnO5zYb3GvJ8BN4RncsgXYJphZ4ys2BCYUg?e=rN9s03) which
+contains 9 cleasses from [UCF101 Dataset](https://www.crcv.ucf.edu/data/UCF101.php). Feel free to choose any other classes from the
+[UCF101 Dataset](https://www.crcv.ucf.edu/data/UCF101.php). Split each classes into train and validation split containing 80 and 20
+samples per class respectively. Use the rest for testing purpose. You
+can use [OpenCV](https://opencv.org/get-started/) to load videos.
 
-#### **NOTE :** (if any)
+**QUESTION:** Implement a function at `Mini-Project/Task2/utils.py` to load data of any of the train, validation or test split. **[1 marks]**
+
+### Motion Feature Extraction
+
+A video consists of consecutive images (aka frames) which when displayed at certain speed, it forms a video. To extract motion related
+information, we wil perform pixel-wise difference of consecutive frames. `Figure 1` shows an example of difference between two consecutive
+frames:
+
+| <p align="center">Figure 1</p> |
+|---|
+| ![Motion feature](imgs/motion_feature.png) |
+
+**QUESTION:** Implement a function at `Mini-Project/Task2/utils.py` that performs following pre-processing **[0.5 marks]**:
+
+1. Convert all color frames to grayscale
+2. Use the following formula for calculating motion features:
+    $$
+        M_k (i,j) = 
+        \begin{cases}
+            1,& D_k (i,j) \geq \text{threshold}\\
+            0,& \text{otherwise}
+        \end{cases}
+    $$
+
+    where
+
+    * $D_k (i,j) = | I_k(i,j) - I_{k+1} (i,j) |$ ; $1 \leq i \leq width, 1 \leq j \leq height$
+    * $I_k(i,j)$ is the pixel intensity of $k^{th}$ frame at location $(i,j)$
+    * $M_k (i,j)$ is the motion information between $k^{th}$ and $(k+1)^{th}$ frame for the pixel at location $(i,j)$
+    * The value of `threshold` is a hyper-parameter. Feel free to try multiple values.
+
+**QUESTION:**: Visualize any video before before and after pre-processing **[0.5 marks]**:
+
+### Dimensionality reduction
+
+The frames in the dataset is of shape 240 x 320 which can be very large to train a Decision tree. Moreover, we need not use all pixel for
+classification as most neigbouring pixels could be redundant. Hence, we provide you class at `Mini-Project/Task2/dimensionality_reduction.py`
+named `Quantizer` which quantizes (reduces) the dimensionality of the frames. The working of the quantizer is described below:
+
+1. The quantizer takes a frame and subdivides it into small blocks. For example, in Figure 2, a frame with motion feature is divided into 5 x 4 blocks.
+    | <p align="center">Figure 2</p> |
+    |---|
+    | ![Motion feature](imgs/mapping.png) |
+
+2. Each of the block is then mapped to certain number. For example, if number of points to map is provided as 40, then each block would be mapped
+    to a number between 0-39. Figure 3 shows an instance of such mapping.
+    | <p align="center">Figure 3</p> |
+    |---|
+    | ![Motion feature](imgs/divide.png) |
+
+3. The matrix is then flattened to give a vector. In the above example, a frame of size 240 x 320 is transformed to a 20 dimensional vector.
+
+#### Usage
+
+The usage of `Quantizer` is described below. Also check the comments provided in the file:
+
+```py
+from dimensionality_reduction import Quantizer
+...
+...
+...
+# Create an instance of Quantizer as shown below.
+# In this case, the quantizer will divide frames in 5 x 4 blocks.
+# If a frame is of size 240, 320 then each block will be of dimension
+# 48 x 80. Since, the num_points=40, each block will be mapped to a number
+# between 0-39
+quantizer = Quantizer(h_blocks=5, w_blocks=4, num_points=40)
+...
+...
+...
+# Before using the the quantizer, we need to train it to learn the mappings 
+# betwwen blocks and numbers. This can be done using `fit()` function which
+# accepts an array of shape (n_frames, height, weigth)
+quantizer.fit(X_train)
+...
+# Use `quantize()` function to quatize images. This function also accepts
+# an array of shape (n_frames, height, weigth) and return an array of shape
+# (n_frames, h_blocks * w_blocks):
+quantizer.quantize(X_val)
+```
+
+### Classification
+
+**QUESTION:** Train a decision tree classifier to classify the videos among activities and compare the performance of sklearn and your
+implementation in terms of accuracy and run-time. **[2 marks]**
+Use the file at `Mini-Project/Task2/video_classification.py` for your implementation. You may create helper function for your convenience.
+HINT :
+1. Train the classifier to classify frames. During inference, to classify a video, classify each frames separately and assign the
+label having maximun frequency. 
+2. You may sub-smaple the number of frames per video.
+
+**QUESTION:** How does the value of threshold duirng motion feature extraction impacts the performance in terms of accuracy. Explain with
+an example. **[1 marks]**
+
+**QUESTION:** Record your own video among the selected classes and report the performance. For each class, show an example of
+success and failure with a brief explanation **[1 marks]**
 
 ---
 
