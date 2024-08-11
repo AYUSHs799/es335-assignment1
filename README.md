@@ -179,6 +179,8 @@ quantizer.quantize(X_val)
 
 ### Classification
 
+![Video Classifier](imgs/VideoClassifier.jpg)
+
 **QUESTION 4 :** Preprocess the data, use the provided quantizer to reduce the dimensions and train a decision tree classifier to classify the videos among activities.
 Compare the performance of sklearn and your implementation in terms of accuracy and run-time. **[2 marks]**
 Use the file at `Mini-Project/Task2/video_classification.py` for your implementation. You may create helper function for your convenience.
