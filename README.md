@@ -113,14 +113,8 @@ frames:
 **QUESTION:** Implement a function at `Mini-Project/Task2/utils.py` that performs following pre-processing **[0.5 marks]**:
 
 1. Convert all color frames to grayscale
-2. Use the following formula for calculating motion features:
-    $$
-        M_k (i,j) = 
-        \begin{cases}
-            1,& D_k (i,j) \geq \text{threshold}\\
-            0,& \text{otherwise}
-        \end{cases}
-    $$
+2. Use the following formula for calculating motion features:\
+    $` M_k (i,j) = \begin{cases} 255,& D_k (i,j) \geq \text{threshold} \\ 0,& \text{otherwise}\end{cases}`$
 
     where
 
@@ -170,8 +164,10 @@ quantizer = Quantizer(h_blocks=5, w_blocks=4, num_points=40)
 ...
 # Before using the the quantizer, we need to train it to learn the mappings 
 # betwwen blocks and numbers. This can be done using `fit()` function which
-# accepts an array of shape (n_frames, height, weigth)
+# accepts an array of shape (n_frames, height, weigth).
 quantizer.fit(X_train)
+# You need to break the videos into frames and concat them to make an array
+# of shape (n_frames, height, weigth)
 ...
 # Use `quantize()` function to quatize images. This function also accepts
 # an array of shape (n_frames, height, weigth) and return an array of shape
@@ -179,13 +175,16 @@ quantizer.fit(X_train)
 quantizer.quantize(X_val)
 ```
 
+**NOTE:** You don't have to implement the quantizer, just use the provided quantizer at `Mini-Project/Task2/dimensionality_reduction.py`
+
 ### Classification
 
-**QUESTION:** Train a decision tree classifier to classify the videos among activities and compare the performance of sklearn and your
-implementation in terms of accuracy and run-time. **[2 marks]**
+**QUESTION:** Preprocess the data, use the provided quantizer to reduce the dimensions and train a decision tree classifier to classify the videos among activities.
+Compare the performance of sklearn and your implementation in terms of accuracy and run-time. **[2 marks]**
 Use the file at `Mini-Project/Task2/video_classification.py` for your implementation. You may create helper function for your convenience.
+
 HINT :
-1. Train the classifier to classify frames. During inference, to classify a video, classify each frames separately and assign the
+1. Break the videos into frames and train the classifier to classify a frame. To classify a video during inference, classify each frames separately and assign the
 label having maximun frequency. 
 2. You may sub-smaple the number of frames per video.
 
