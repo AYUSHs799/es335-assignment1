@@ -1,6 +1,6 @@
 # Assignment 1
 
-## Total ?? marks 
+## Total 16 marks 
 
 ## Decision Tree Implementation [5 marks]
 
@@ -98,7 +98,7 @@ contains 9 cleasses from [UCF101 Dataset](https://www.crcv.ucf.edu/data/UCF101.p
 samples per class respectively. Use the rest for testing purpose. You
 can use [OpenCV](https://opencv.org/get-started/) to load videos.
 
-**QUESTION:** Implement a function at `Mini-Project/Task2/utils.py` to load data of any of the train, validation or test split. **[1 marks]**
+**QUESTION 1 :** Implement the `get_data` function in the `Mini-Project/Task2/utils.py` file. This function should be able to load video data for loading of training, validation, or test split, based on the specified input. **[1 mark]**
 
 ### Motion Feature Extraction
 
@@ -110,7 +110,7 @@ frames:
 |---|
 | ![Motion feature](imgs/motion_feature.png) |
 
-**QUESTION:** Implement a function at `Mini-Project/Task2/utils.py` that performs following pre-processing **[0.5 marks]**:
+**QUESTION 2 :** Implement a function at `Mini-Project/Task2/utils.py` that performs following pre-processing **[0.5 marks]**:
 
 1. Convert all color frames to grayscale
 2. Use the following formula for calculating motion features:\
@@ -123,7 +123,7 @@ frames:
     * $M_k (i,j)$ is the motion information between $k^{th}$ and $(k+1)^{th}$ frame for the pixel at location $(i,j)$
     * The value of `threshold` is a hyper-parameter. Feel free to try multiple values.
 
-**QUESTION:**: Visualize any video before before and after pre-processing **[0.5 marks]**:
+**QUESTION 3 :**: Visualize any video before before and after pre-processing **[0.5 marks]**:
 
 ### Dimensionality reduction
 
@@ -179,7 +179,7 @@ quantizer.quantize(X_val)
 
 ### Classification
 
-**QUESTION:** Preprocess the data, use the provided quantizer to reduce the dimensions and train a decision tree classifier to classify the videos among activities.
+**QUESTION 4 :** Preprocess the data, use the provided quantizer to reduce the dimensions and train a decision tree classifier to classify the videos among activities.
 Compare the performance of sklearn and your implementation in terms of accuracy and run-time. **[2 marks]**
 Use the file at `Mini-Project/Task2/video_classification.py` for your implementation. You may create helper function for your convenience.
 
@@ -188,10 +188,10 @@ HINT :
 label having maximun frequency. 
 2. You may sub-smaple the number of frames per video.
 
-**QUESTION:** How does the value of threshold duirng motion feature extraction impacts the performance in terms of accuracy. Explain with
+**QUESTION 5 :** How does the value of threshold duirng motion feature extraction impacts the performance in terms of accuracy. Explain with
 an example. **[1 marks]**
 
-**QUESTION:** Record your own video among the selected classes and report the performance. For each class, show an example of
+**QUESTION 6 :** Record your own video among the selected classes and report the performance. For each class, show an example of
 success and failure with a brief explanation **[1 marks]**
 
 ---
