@@ -113,14 +113,8 @@ frames:
 **QUESTION:** Implement a function at `Mini-Project/Task2/utils.py` that performs following pre-processing **[0.5 marks]**:
 
 1. Convert all color frames to grayscale
-2. Use the following formula for calculating motion features:
-    $$
-        M_k (i,j) = 
-        \begin{cases}
-            1,& D_k (i,j) \geq \text{threshold}\\
-            0,& \text{otherwise}
-        \end{cases}
-    $$
+2. Use the following formula for calculating motion features:\
+    $` M_k (i,j) = \begin{cases} 255,& D_k (i,j) \geq \text{threshold} \\ 0,& \text{otherwise}\end{cases}`$
 
     where
 
