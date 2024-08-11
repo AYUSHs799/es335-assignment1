@@ -5,6 +5,12 @@ There is no restriction on following the below template, these fucntions are her
 
 import pandas as pd
 
+def one_hot_encoding(X: pd.DataFrame) -> pd.DataFrame:
+    """
+    Function to perform one hot encoding on the input data
+    """
+
+    pass
 
 def check_ifreal(y: pd.Series) -> bool:
     """
@@ -30,9 +36,9 @@ def gini_index(Y: pd.Series) -> float:
     pass
 
 
-def information_gain(Y: pd.Series, attr: pd.Series) -> float:
+def information_gain(Y: pd.Series, attr: pd.Series, criterion: str) -> float:
     """
-    Function to calculate the information gain
+    Function to calculate the information gain using criterion (entropy, gini index or MSE)
     """
 
     pass
