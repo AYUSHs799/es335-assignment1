@@ -98,19 +98,19 @@ contains 9 classes from [UCF101 Dataset](https://www.crcv.ucf.edu/data/UCF101.ph
 samples per class respectively. Use the rest for testing purpose. You
 can use [OpenCV](https://opencv.org/get-started/) to load videos.
 
-**QUESTION 1 :** Implement the `get_data` function in the `Mini-Project/Task2/utils.py` file. This function should be able to load video data for loading of training, validation, or test split, based on the specified input. **[1 mark]**
+**QUESTION 1 :** Implement the `get_data` function in the `Mini-Project/Task2/utils.py` file. This function should be able to load video data for training, validation, or test split, based on the specified input. **[1 mark]**
 
 ### Motion Feature Extraction
 
 A video consists of consecutive images (aka frames) which when displayed at certain speed, it forms a video. To extract motion related
-information, we wil perform pixel-wise difference of consecutive frames. `Figure 1` shows an example of difference between two consecutive
+information, we wil perform pixel-wise difference of consecutive frames (please checkout opencv [absolute frame difference](https://shimat.github.io/opencvsharp_docs/html/6c7cefd1-59bc-a595-fe2a-0c8a709f8d16.htm)). `Figure 1` shows an example of difference between two consecutive
 frames:
 
 | <p align="center">Figure 1</p> |
 |---|
 | ![Motion feature](imgs/motion_feature.png) |
 
-**QUESTION 2 :** Implement a function at `Mini-Project/Task2/utils.py` that performs following pre-processing **[0.5 marks]**:
+**QUESTION 2 :** Implement the `pre_process` function at `Mini-Project/Task2/utils.py` that performs following pre-processing **[0.5 marks]**:
 
 1. Convert all color frames to grayscale
 2. Use the following formula for calculating motion features:\
