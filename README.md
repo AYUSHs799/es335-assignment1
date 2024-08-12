@@ -1,6 +1,72 @@
 # Assignment 1
 
-## Total 16 marks 
+## Total 20 marks (Will be scaled down to 10 marks)
+
+# Human Activity Recognition (HAR)
+Human Activity Recognition (HAR) refers to the capability of machines to identify various activities performed by the users. The knowledge acquired from these systems/algorithms is integrated into many applications where the associated device uses it to identify actions or gestures and performs predefined tasks in response.
+
+## Dataset
+We are interested in classifying human activities based on accelerometer data. we will be using a publically available dataset called [UCI-HAR](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8567275). The dataset is available to download [here](https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones). Just for your referenc a youtube video of the authors collecting participant's accelerometer data is also available [here](http://www.youtube.com/watch?v=XOEN9W05_4A). 
+
+## Task : Exploratory Data Analysis (EDA) [4 marks]
+
+### Preprocessing
+We will use the raw accelerometer data within the inertial_signals folder. The provided script, `CombineScript.py`, organizes and sorts accelerometer data, establishing separate classes for each category and compiling participant data into these classes. `MakeDataset.py` script is used to read through all the participant data and create a single dataset. The dataset is then split into train,test and validation set. We focus on the first 10 seconds of activity, translating to the initial 500 data samples due to a sampling rate of 50Hz.
+
+* **Step-1>** Place the `CombineScript.py` and `MakeDataset.py` in the same folder that contains the UCI dataset. Ensure you have moved into the folder before running the scripts. If you are runing the scripts from a different folder, you will have to play around with the paths in the scripts to make it work.
+* **Step-2>** Run `CombineScript.py` and provide the paths to test and train folders in UCI dataset. This will create a folder called `Combined` which will contain all the data from all the participants. This is how most of the datasets are organized. You may encounter similar dataset structures in the future.
+* **Step-3>** Run `MakeDataset.py` and provide the path to `Combined` folder. This will create a Dataset which will contain the train, test and validation set. You can use this dataset to train your models.
+
+
+### Questions
+
+1. Plot the waveform for one sample data from each activity class. Are you able to see any difference/similarities between the activities? You can plot a subplot having 6 colunms to show differences/similarities between the activities. Do you think the model will be able to classify the activities based on the data? **[0.5 marks]**
+2. Do you think we need a machine learning model to differentiate between static activities (laying, sitting, standing) and dynamic activities(walking, walking_downstairs, walking_upstairs)? Look at the linear acceleration $(acc_x^2+acc_y^2+acc_z^2)$ for each activity and justify your answer. **[0.5 marks]**
+3. 
+    * Use PCA (Principal Component Analysis) on Total Acceleration $(acc_x^2+acc_y^2+acc_z^2)$ to compress the acceleration timeseries into two features and plot a scatter plot to visualize different class of activities. 
+    *  Next, use [TSFEL](https://tsfel.readthedocs.io/en/latest/) ([a featurizer library](https://github.com/fraunhoferportugal/tsfel)) to create features (your choice which ones you feel are useful) and then perform PCA to obtain two features. Plot a scatter plot to visualize different class of activities. 
+    *  Now use the features provided by the dataset and perform PCA to obtain two features. Plot a scatter plot to visualize different class of activities.
+    *  Compare the results of PCA on Total Acceleration, TSFEL and the dataset features. Which method do you think is better for visualizing the data? **[2 marks]**
+
+4. Calculate the correlation matrix of the features obtained by TSFEL and provided in the dataset. Identify the features that are highly correlated with each other. Are there any redundant features? **[1 marks]**
+
+
+## Task : Decision Trees for Human Activity Recognition [6 marks]
+
+### Questions
+
+1. Train a decision tree model using the raw accelerometer data. Report the accuracy and confusion matrix of the model. **[1 marks]**
+2. Train a decision tree model using the features obtained by TSFEL. Report the accuracy and confusion matrix of the model. **[1 marks]**
+3. Train a decision tree model using the features provided in the dataset. Report the accuracy and confusion matrix of the model. **[1 marks]**
+4. Train Decision Tree with varrying depths (2-8) using all above 3 methods. Plot the accuracy of the model on test data vs the depth of the tree. **[2 marks]**
+5. Are there any participants/ activitivies where the Model performace is bad? If Yes, Why? **[1 mark]**
+
+## Task : Prompt Engineering for Large Language Models (LLMs) [5 marks]
+
+### Zero-shot and Few Shot Prompting :
+Zero-shot prompting involves providing a language model with a prompt or a set of instructions that allows it to generate text or perform a task without any explicit training data or labeled examples. The model is expected to generate high-quality text or perform the task accurately based solely on the prompt and its internal knowledge.
+
+Few-shot prompting is similar to zero-shot prompting, but it involves providing the model with a limited number of labeled examples or prompts that are relevant to the specific task or dataset. The model is then expected to generate high-quality text or perform the task accurately based on the few labeled examples and its internal knowledge.
+
+### Task Description :
+You have been provided with a [Python notebook](./Mini-Project/Task1-llm/ZeroShot_FewShot.ipynb) that demonstrates how to use zero-shot and few-shot prompting with a language model (LLM). The example in the notebook involves text-based tasks, but LLMs can also be applied to a wide range of tasks (Students intrested in learning more can read [here](https://deepai.org/publication/large-language-models-are-few-shot-health-learners) and [here](https://arxiv.org/pdf/2305.15525v1)). 
+
+Queries will be provided in the form of featurized accelerometer data and the model should predict the activity performed. 
+* **Zero shot learning** : The model should be able to predict the activity based on the accelerometer data without any explicit training data or labeled examples. 
+* **Few Shot Learning** :The model should also be able to predict the activity based on a limited number of labeled examples or prompts that are relevant to the specific task. 
+
+It is advised to either write a markdown file or use a Python notebook to demonstrate your reasoning, results and findings.
+
+### Questions
+
+3. Demonstrate how to use Zero-Shot Learning and Few-Shot Learning to classify human activities based on the featurized accelerometer data. Qualitatively demonstrate the performance of Few-Shot Learning with Zero-Shot Learning. Which method performs better? Why?  **[1.5 marks]**
+5. Quantitatively compare the accuracy of Few-Shot Learning with Decision Trees (You may use a subset of the test set if you encounter rate-limiting issues). Which method performs better? Why? **[2 marks]**
+6. What are the limitations of Zero-Shot Learning and Few-Shot Learning in the context of classifying human activities based on featurized accelerometer data? **[0.5 marks]**
+
+#### NOTE :
+1. To obtain API key go to the GroqCloud Developer Console at https://console.groq.com/login. Follow the Quickstart guide to obtain your API key.
+2. ***DO NOT share your API key with anyone or make it public or upload it to any public repository such as for this assignment. If the key is found in the code, you will be penalized with a <u>0.5 marks deduction</u>.***
+
 
 ## Decision Tree Implementation [5 marks]
 
@@ -55,151 +121,8 @@ The code should be written in Python and not use existing libraries other than t
 You must answer the subjectve questions (timing analysis, displaying plots) by creating `assignment_q<question-number>_subjective_answers.md`
 
 
-# Human Activity Recognition (Mini Project)
-Human Activity Recognition (HAR) refers to the capability of machines to identify various activities performed by the users. The knowledge acquired from these recognition systems is integrated into many applications where the associated device uses it to identify actions or gestures and performs predefined tasks in response.
-
-## Task1 : Prompt Engineering for Large Language Models (LLMs) [5 marks]
-
-### Zero-shot and Few Shot Prompting :
-Zero-shot prompting involves providing a language model with a prompt or a set of instructions that allows it to generate text or perform a task without any explicit training data or labeled examples. The model is expected to generate high-quality text or perform the task accurately based solely on the prompt and its internal knowledge.
-
-Few-shot prompting is similar to zero-shot prompting, but it involves providing the model with a limited number of labeled examples or prompts that are relevant to the specific task or dataset. The model is then expected to generate high-quality text or perform the task accurately based on the few labeled examples and its internal knowledge.
-
-### Task Description :
-You have been provided with a [Python notebook](./Mini-Project/Task1-llm/ZeroShot_FewShot.ipynb) that demonstrates how to use zero-shot and few-shot prompting with a language model (LLM). The example in the notebook involves text-based tasks, but LLMs can also be applied to a wide range of tasks (Students intrested in learning more can read [here](https://deepai.org/publication/large-language-models-are-few-shot-health-learners) and [here](https://arxiv.org/pdf/2305.15525v1)). In this task, we are interested in classifying human activities based on featurized accelerometer data. we will be using a publically available dataset called [UCI-HAR](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8567275). The dataset is available to download [here](https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones). Just for your referenc a youtube video of the authors collecting participant's accelerometer data is also available [here](http://www.youtube.com/watch?v=XOEN9W05_4A). 
-
-Queries will be provided in the form of featurized accelerometer data and the model should predict the activity performed. 
-* **Zero shot learning** : The model should be able to predict the activity based on the accelerometer data without any explicit training data or labeled examples. 
-* **Few Shot Learning** :The model should also be able to predict the activity based on a limited number of labeled examples or prompts that are relevant to the specific task. 
-
-It is advised to either write a markdown file or use a Python notebook to demonstrate your reasoning, results and findings.
-
-### Questions
-1. Plot the waveform for one sample data from each activity class. Are you able to see any difference/similarities between the activities? You can plot a subplot having 6 colunms to show differences/similarities between the activities. Do you think the model will be able to classify the activities based on the data? **[0.5 marks]**
-2. Do you think we need a machine learning model to differentiate between static activities (laying, sitting, standing) and dynamic activities(walking, walking_downstairs, walking_upstairs)? Look at the linear acceleration $(acc_x^2+acc_y^2+acc_z^2)$ for each activity and justify your answer. **[0.5 marks]**
-3. Demonstrate how to use Zero-Shot Learning and Few-Shot Learning to classify human activities based on the featurized accelerometer data. Qualitatively demonstrate the performance of Few-Shot Learning with Zero-Shot Learning. Which method performs better? Why?  **[1.5 marks]**
-5. Quantitatively compare the accuracy of Few-Shot Learning with Decision Trees (You may use a subset of the test set if you encounter rate-limiting issues). Which method performs better? Why? **[2 marks]**
-6. What are the limitations of Zero-Shot Learning and Few-Shot Learning in the context of classifying human activities based on featurized accelerometer data? **[0.5 marks]**
-
-#### NOTE :
-1. To obtain API key go to the GroqCloud Developer Console at https://console.groq.com/login. Follow the Quickstart guide to obtain your API key.
-2. ***DO NOT share your API key with anyone or make it public or upload it to any public repository such as for this assignment. If the key is found in the code, you will be penalized with a <u>0.5 marks deduction</u>.***
-
-
-## Task 2: Vision based Human Activity Recognition
-
-In this task, we need to recognise activity performed in a video via a Decision Tree Classifier
-
-### Dataset
-
-Use atleast three classes from the [UCF9 Dataset](https://iitgnacin-my.sharepoint.com/:f:/g/personal/22210006_iitgn_ac_in/EmgKF7jE-2xEnO5zYb3GvJ8BN4RncsgXYJphZ4ys2BCYUg?e=rN9s03) which
-contains 9 classes from [UCF101 Dataset](https://www.crcv.ucf.edu/data/UCF101.php). Feel free to choose any other classes from the
-[UCF101 Dataset](https://www.crcv.ucf.edu/data/UCF101.php). Split each classes into train and validation split containing 80 and 20
-samples per class respectively. Use the rest for testing purpose. You
-can use [OpenCV](https://opencv.org/get-started/) to load videos.
-
-**QUESTION 1 :** Implement the `get_data` function in the `Mini-Project/Task2/utils.py` file. This function should be able to load video data for training, validation, or test split, based on the specified input. **[1 mark]**
-
-### Motion Feature Extraction
-
-A video consists of consecutive images (aka frames) which when displayed at certain speed, it forms a video. To extract motion related
-information, we wil perform pixel-wise difference of consecutive frames (please checkout opencv [absolute frame difference](https://shimat.github.io/opencvsharp_docs/html/6c7cefd1-59bc-a595-fe2a-0c8a709f8d16.htm)). `Figure 1` shows an example of difference between two consecutive
-frames:
-
-| <p align="center">Figure 1</p> |
-|---|
-| ![Motion feature](imgs/motion_feature.png) |
-
-**QUESTION 2 :** Implement the `pre_process` function at `Mini-Project/Task2/utils.py` that performs following pre-processing **[0.5 marks]**:
-
-1. Convert all color frames to grayscale
-2. Use the following formula for calculating motion features:\
-    $` M_k (i,j) = \begin{cases} 255,& D_k (i,j) \geq \text{threshold} \\ 0,& \text{otherwise}\end{cases}`$
-
-    where
-
-    * $D_k (i,j) = | I_k(i,j) - I_{k+1} (i,j) |$ ; $1 \leq i \leq width, 1 \leq j \leq height$
-    * $I_k(i,j)$ is the pixel intensity of $k^{th}$ frame at location $(i,j)$
-    * $M_k (i,j)$ is the motion information between $k^{th}$ and $(k+1)^{th}$ frame for the pixel at location $(i,j)$
-    * The value of `threshold` is a hyper-parameter. Feel free to try multiple values.
-
-**QUESTION 3 :**: Visualize any video before before and after pre-processing **[0.5 marks]**:
-
-### Dimensionality reduction
-
-The frames in the dataset is of shape 240 x 320 which can be very large to train a Decision tree. Moreover, we need not use all pixel for
-classification as most neigbouring pixels could be redundant. Hence, we provide you class at `Mini-Project/Task2/dimensionality_reduction.py`
-named `Quantizer` which quantizes (reduces) the dimensionality of the frames. The working of the quantizer is described below:
-
-1. The quantizer takes a frame and subdivides it into small blocks. For example, in Figure 2, a frame with motion feature is divided into 5 x 4 blocks.
-    | <p align="center">Figure 2</p> |
-    |---|
-    | ![Motion feature](imgs/mapping.png) |
-
-2. Each of the block is then mapped to certain number. For example, if number of points to map is provided as 40, then each block would be mapped
-    to a number between 0-39. Figure 3 shows an instance of such mapping.
-    | <p align="center">Figure 3</p> |
-    |---|
-    | ![Motion feature](imgs/divide.png) |
-
-3. The matrix is then flattened to give a vector. In the above example, a frame of size 240 x 320 is transformed to a 20 dimensional vector.
-
-#### Usage
-
-The usage of `Quantizer` is described below. Also check the comments provided in the file:
-
-```py
-from dimensionality_reduction import Quantizer
-...
-...
-...
-# Create an instance of Quantizer as shown below.
-# In this case, the quantizer will divide frames in 5 x 4 blocks.
-# If a frame is of size 240, 320 then each block will be of dimension
-# 48 x 80. Since, the num_points=40, each block will be mapped to a number
-# between 0-39
-quantizer = Quantizer(h_blocks=5, w_blocks=4, num_points=40)
-...
-...
-...
-# Before using the the quantizer, we need to train it to learn the mappings 
-# betwwen blocks and numbers. This can be done using `fit()` function which
-# accepts an array of shape (n_frames, height, weigth).
-quantizer.fit(X_train)
-# You need to break the videos into frames and concat them to make an array
-# of shape (n_frames, height, weigth)
-...
-# Use `quantize()` function to quatize images. This function also accepts
-# an array of shape (n_frames, height, weigth) and return an array of shape
-# (n_frames, h_blocks * w_blocks):
-quantizer.quantize(X_val)
-```
-
-**NOTE:** You don't have to implement the quantizer, just use the provided quantizer at `Mini-Project/Task2/dimensionality_reduction.py`
-
-### Classification
-
-![Video Classifier](imgs/VideoClassifier.jpg)
-
-**QUESTION 4 :** Preprocess the data, use the provided quantizer to reduce the dimensions and train a decision tree classifier to classify the videos among activities.
-Compare the performance of sklearn and your implementation in terms of accuracy and run-time. **[2 marks]**
-Use the file at `Mini-Project/Task2/video_classification.py` for your implementation. You may create helper function for your convenience.
-
-HINT :
-1. Break the videos into frames and train the classifier to classify a frame. To classify a video during inference, classify each frames separately and assign the
-label having maximun frequency. 
-2. You may sub-smaple the number of frames per video.
-
-**QUESTION 5 :** How does the value of threshold duirng motion feature extraction impacts the performance in terms of accuracy. Explain with
-an example. **[1 marks]**
-
-**QUESTION 6 :** Record your own video among the selected classes and report the performance. For each class, show an example of
-success and failure with a brief explanation **[1 marks]**
-
----
-
-
 ### **Genral Instructions :**
 1. Show your results in a Jupyter Notebook or an MD file. If you opt for using an MD file, you should also include the code.
-2. If you wish you can use the scikit-learn implementation of Decision Tree for the Mini-Project.
+2. You can use the scikit-learn implementation of Decision Tree for the Human Activity Recognition.
+3. This assignment is of 20 marks and will be scaled down to 10 marks.
 
