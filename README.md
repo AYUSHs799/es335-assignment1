@@ -8,7 +8,7 @@ Human Activity Recognition (HAR) refers to the capability of machines to identif
 ## Dataset
 We are interested in classifying human activities based on accelerometer data. we will be using a publically available dataset called [UCI-HAR](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8567275). The dataset is available to download [here](https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones). Just for your referenc a youtube video of the authors collecting participant's accelerometer data is also available [here](http://www.youtube.com/watch?v=XOEN9W05_4A). 
 
-## Task : Exploratory Data Analysis (EDA) [4 marks]
+## Task 1 : Exploratory Data Analysis (EDA) [4 marks]
 
 ### Preprocessing
 We will use the raw accelerometer data within the inertial_signals folder. The provided script, `CombineScript.py`, organizes and sorts accelerometer data, establishing separate classes for each category and compiling participant data into these classes. `MakeDataset.py` script is used to read through all the participant data and create a single dataset. The dataset is then split into train,test and validation set. We focus on the first 10 seconds of activity, translating to the initial 500 data samples due to a sampling rate of 50Hz.
@@ -31,19 +31,19 @@ We will use the raw accelerometer data within the inertial_signals folder. The p
 4. Calculate the correlation matrix of the features obtained by TSFEL and provided in the dataset. Identify the features that are highly correlated with each other. Are there any redundant features? **[1 marks]**
 
 
-## Task : Decision Trees for Human Activity Recognition [6 marks]
+## Task 2 : Decision Trees for Human Activity Recognition [6 marks]
 
 ### Questions
 
 1. Use Sklearn Library to train Decision Tress.
-    * Train a decision tree model using the raw accelerometer data. Report the accuracy and confusion matrix of the model. 
-    * Train a decision tree model using the features obtained by TSFEL. Report the accuracy and confusion matrix of the model. 
-    * Train a decision tree model using the features provided in the dataset. Report the accuracy and confusion matrix of the model. 
+    * Train a decision tree model using the raw accelerometer data. Report the accuracy, precision, recall and confusion matrix of the model. 
+    * Train a decision tree model using the features obtained by TSFEL. Report the accuracy, precision, recall and confusion matrix of the model. 
+    * Train a decision tree model using the features provided in the dataset. Report the accuracy, precision, recall and confusion matrix of the model. 
     * Compare the results of the three models. Which model do you think is better? **[3 marks]**
 4. Train Decision Tree with varrying depths (2-8) using all above 3 methods. Plot the accuracy of the model on test data vs the depth of the tree. **[2 marks]**
 5. Are there any participants/ activitivies where the Model performace is bad? If Yes, Why? **[1 mark]**
 
-## Task : Prompt Engineering for Large Language Models (LLMs) [5 marks]
+## Task 3 : Prompt Engineering for Large Language Models (LLMs) [5 marks]
 
 ### Zero-shot and Few Shot Prompting :
 Zero-shot prompting involves providing a language model with a prompt or a set of instructions that allows it to generate text or perform a task without any explicit training data or labeled examples. The model is expected to generate high-quality text or perform the task accurately based solely on the prompt and its internal knowledge.
@@ -57,8 +57,6 @@ Queries will be provided in the form of featurized accelerometer data and the mo
 * **Zero shot learning** : The model should be able to predict the activity based on the accelerometer data without any explicit training data or labeled examples. 
 * **Few Shot Learning** :The model should also be able to predict the activity based on a limited number of labeled examples or prompts that are relevant to the specific task. 
 
-It is advised to either write a markdown file or use a Python notebook to demonstrate your reasoning, results and findings.
-
 ### Questions
 
 1. Demonstrate how to use Zero-Shot Learning and Few-Shot Learning to classify human activities based on the featurized accelerometer data. Qualitatively demonstrate the performance of Few-Shot Learning with Zero-Shot Learning. Which method performs better? Why?  **[2 marks]**
@@ -69,7 +67,7 @@ It is advised to either write a markdown file or use a Python notebook to demons
 #### NOTE :
 1. To obtain API key go to the GroqCloud Developer Console at https://console.groq.com/login. Follow the Quickstart guide to obtain your API key.
 2. ***DO NOT share your API key with anyone or make it public or upload it to any public repository such as for this assignment. If the key is found in the code, you will be penalized with a <u>0.5 marks deduction</u>.***
-
+3. It is advised to either write a markdown file (.md) or use a Python notebook (.ipynb) to demonstrate your reasoning, results and findings.
 
 ## Decision Tree Implementation [5 marks]
 
@@ -121,7 +119,7 @@ The code should be written in Python and not use existing libraries other than t
     >You should be editing `experiments.py` for the code containing the above experiments.
 
 
-You must answer the subjectve questions (timing analysis, displaying plots) by creating `assignment_q<question-number>_subjective_answers.md`
+You must answer the subjectve questions (visualization,timing analysis, displaying plots) by creating `Asst#<task-name>_<Q#>.md`
 
 
 ### **Genral Instructions :**
