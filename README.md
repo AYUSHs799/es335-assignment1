@@ -35,9 +35,11 @@ We will use the raw accelerometer data within the inertial_signals folder. The p
 
 ### Questions
 
-1. Train a decision tree model using the raw accelerometer data. Report the accuracy and confusion matrix of the model. **[1 marks]**
-2. Train a decision tree model using the features obtained by TSFEL. Report the accuracy and confusion matrix of the model. **[1 marks]**
-3. Train a decision tree model using the features provided in the dataset. Report the accuracy and confusion matrix of the model. **[1 marks]**
+1. Use Sklearn Library to train Decision Tress.
+    * Train a decision tree model using the raw accelerometer data. Report the accuracy and confusion matrix of the model. 
+    * Train a decision tree model using the features obtained by TSFEL. Report the accuracy and confusion matrix of the model. 
+    * Train a decision tree model using the features provided in the dataset. Report the accuracy and confusion matrix of the model. 
+    * Compare the results of the three models. Which model do you think is better? **[3 marks]**
 4. Train Decision Tree with varrying depths (2-8) using all above 3 methods. Plot the accuracy of the model on test data vs the depth of the tree. **[2 marks]**
 5. Are there any participants/ activitivies where the Model performace is bad? If Yes, Why? **[1 mark]**
 
@@ -59,9 +61,10 @@ It is advised to either write a markdown file or use a Python notebook to demons
 
 ### Questions
 
-3. Demonstrate how to use Zero-Shot Learning and Few-Shot Learning to classify human activities based on the featurized accelerometer data. Qualitatively demonstrate the performance of Few-Shot Learning with Zero-Shot Learning. Which method performs better? Why?  **[1.5 marks]**
-5. Quantitatively compare the accuracy of Few-Shot Learning with Decision Trees (You may use a subset of the test set if you encounter rate-limiting issues). Which method performs better? Why? **[2 marks]**
-6. What are the limitations of Zero-Shot Learning and Few-Shot Learning in the context of classifying human activities based on featurized accelerometer data? **[0.5 marks]**
+1. Demonstrate how to use Zero-Shot Learning and Few-Shot Learning to classify human activities based on the featurized accelerometer data. Qualitatively demonstrate the performance of Few-Shot Learning with Zero-Shot Learning. Which method performs better? Why?  **[2 marks]**
+2. Quantitatively compare the accuracy of Few-Shot Learning with Decision Trees (You may use a subset of the test set if you encounter rate-limiting issues). Which method performs better? Why? **[1 marks]**
+3. What are the limitations of Zero-Shot Learning and Few-Shot Learning in the context of classifying human activities based on featurized accelerometer data? **[1 marks]**
+4. What does the model classify when the input is out of the domain? Also test the model with random data and report the results. **[1 marks]**
 
 #### NOTE :
 1. To obtain API key go to the GroqCloud Developer Console at https://console.groq.com/login. Follow the Quickstart guide to obtain your API key.
