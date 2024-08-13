@@ -1,6 +1,6 @@
 # Assignment 1
 
-## Total 22 marks (Will be scaled down to 11 marks)
+## Total 20 marks (Will be scaled down to 10 marks)
 
 # Human Activity Recognition (HAR)
 Human Activity Recognition (HAR) refers to the capability of machines to identify various activities performed by the users. The knowledge acquired from these systems/algorithms is integrated into many applications where the associated device uses it to identify actions or gestures and performs predefined tasks in response.
@@ -20,7 +20,7 @@ We will use the raw accelerometer data within the inertial_signals folder. The p
 
 ### Questions
 
-1. Plot the waveform for one sample data from each activity class. Are you able to see any difference/similarities between the activities? You can plot a subplot having 6 colunms to show differences/similarities between the activities. Do you think the model will be able to classify the activities based on the data? **[0.5 marks]**
+1. Plot the waveform for one sample data from each activity class. Are you able to see any difference/similarities between the activities? You can plot a subplot having 6 columns to show differences/similarities between the activities. Do you think the model will be able to classify the activities based on the data? **[0.5 marks]**
 2. Do you think we need a machine learning model to differentiate between static activities (laying, sitting, standing) and dynamic activities(walking, walking_downstairs, walking_upstairs)? Look at the linear acceleration $(acc_x^2+acc_y^2+acc_z^2)$ for each activity and justify your answer. **[0.5 marks]**
 3. Visualize the data using PCA. **[1 marks]**
     * Use PCA (Principal Component Analysis) on Total Acceleration $(acc_x^2+acc_y^2+acc_z^2)$ to compress the acceleration timeseries into two features and plot a scatter plot to visualize different class of activities. 
@@ -42,7 +42,7 @@ We will use the raw accelerometer data within the inertial_signals folder. The p
 2. Train Decision Tree with varrying depths (2-8) using all above 3 methods. Plot the accuracy of the model on test data vs the depth of the tree. **[1 marks]**
 3. Are there any participants/ activitivies where the Model performace is bad? If Yes, Why? **[0.5 mark]**
 
-## Task 3 : Prompt Engineering for Large Language Models (LLMs) [5 marks]
+## Task 3 : Prompt Engineering for Large Language Models (LLMs) [4 marks]
 
 ### Zero-shot and Few Shot Prompting :
 Zero-shot prompting involves providing a language model with a prompt or a set of instructions that allows it to generate text or perform a task without any explicit training data or labeled examples. The model is expected to generate high-quality text or perform the task accurately based solely on the prompt and its internal knowledge.
@@ -58,7 +58,7 @@ Queries will be provided in the form of featurized accelerometer data and the mo
 
 ### Questions
 
-1. Demonstrate how to use Zero-Shot Learning and Few-Shot Learning to classify human activities based on the featurized accelerometer data. Qualitatively demonstrate the performance of Few-Shot Learning with Zero-Shot Learning. Which method performs better? Why?  **[2 marks]**
+1. Demonstrate how to use Zero-Shot Learning and Few-Shot Learning to classify human activities based on the featurized accelerometer data. Qualitatively demonstrate the performance of Few-Shot Learning with Zero-Shot Learning. Which method performs better? Why?  **[1 marks]**
 2. Quantitatively compare the accuracy of Few-Shot Learning with Decision Trees (You may use a subset of the test set if you encounter rate-limiting issues). Which method performs better? Why? **[1 marks]**
 3. What are the limitations of Zero-Shot Learning and Few-Shot Learning in the context of classifying human activities based on featurized accelerometer data? **[1 marks]**
 4. What does the model classify when given input from an entirely new activity that it hasn't seen before? **[0.5 mark]**
@@ -86,11 +86,9 @@ For this exercise marks will not depend on what numbers you get but on the proce
 2. ***DO NOT share your API key with anyone or make it public or upload it to any public repository such as for this assignment. If the key is found in the code, you will be penalized with a <u>1.0 marks deduction</u>.***
 3. It is advised to either write a markdown file (.md) or use a Python notebook (.ipynb) to demonstrate your reasoning, results and findings.
 
-## Decision Tree Implementation [7 marks]
+## Decision Tree Implementation [6 marks]
 
-1. Complete the decision tree implementation in tree/base.py. **[3 marks]**
-The code should be written in Python and not use existing libraries other than the ones shared in class or already imported in the code. Your decision tree should work for four cases: i) discrete features, discrete output; ii) discrete features, real output; iii) real features, discrete output; real features, real output. **Your model should accept real inputs only (for discrete inputs, you may convert the attributes into one-hot encoded vectors)**. 
- Your decision tree should be able to use InformationGain using Entropy or GiniIndex as the criteria for splitting for discrete output. Your decision tree should be able to use InformationGain using MSE as the criteria for splitting for real output. Your code should also be able to plot/display the decision tree. 
+1. Complete the decision tree implementation in tree/base.py. The code should be written in Python and not use existing libraries other than the ones shared in class or already imported in the code. Your decision tree should work for four cases: i) discrete features, discrete output; ii) discrete features, real output; iii) real features, discrete output; real features, real output. <u>Your model should accept real inputs only (for discrete inputs, you may convert the attributes into one-hot encoded vectors)</u>. Your decision tree should be able to use InformationGain using Entropy or GiniIndex as the criteria for splitting for discrete output. Your decision tree should be able to use InformationGain using MSE as the criteria for splitting for real output. Your code should also be able to plot/display the decision tree.  **[2.5 marks]**
 
     > You should be editing the following files.
   
@@ -118,7 +116,7 @@ The code should be written in Python and not use existing libraries other than t
     plt.scatter(X[:, 0], X[:, 1], c=y)
     ```
 
-    a) Show the usage of *your decision tree* on the above dataset. The first 70% of the data should be used for training purposes and the remaining 30% for test purposes. Show the accuracy, per-class precision and recall of the decision tree you implemented on the test dataset. **[1 mark]**
+    a) Show the usage of *your decision tree* on the above dataset. The first 70% of the data should be used for training purposes and the remaining 30% for test purposes. Show the accuracy, per-class precision and recall of the decision tree you implemented on the test dataset. **[0.5 mark]**
 
     b) Use 5 fold cross-validation on the dataset. Using nested cross-validation find the optimum depth of the tree. **[1 mark]**
     
